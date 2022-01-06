@@ -18,8 +18,8 @@ const getApiInfo = async () => {
             })
             pokemones.push(...auxPokemones);
             url = pokemonesApi.next;
-        } while (url != null && pokemones.length < 20); //ACA PUEDO LIMITARLOS A LOS QUE QUIERA TRAER
-        
+        } while (url != null && pokemones.length < 40); //ACA PUEDO LIMITARLOS A LOS QUE QUIERA TRAER
+        // console.log(pokemones);
         for (const pokemon of pokemones) {
             let infoPoke = await axios.get(pokemon.url);
             let dataPoke = infoPoke.data;
