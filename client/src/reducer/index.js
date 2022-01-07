@@ -3,7 +3,7 @@ const GET_POKEMONS = 'GET_POKEMONS';
 
 
 const initialState = {
-    pokemons = [],
+    pokemons: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -14,6 +14,8 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 pokemons: action.payload
             };
+        default:
+            return {...state};    
     };
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemons } from '../actions';
-import { Link } from 'react-router-dom';
+import Card from './Card';
 
 export default function Home() {
 
@@ -11,22 +11,26 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getPokemons())
-    }, [])
-
-    const handleClick = e => {
-        e.preventDefault();
-        dispatch(getPokemons());
-    }
+    }, [dispatch])
 
     return(
         <div>
-            <Link to='/pokemon'>Crear pokemon</Link>
             <h1>PokeAPI</h1>
             <h2>by MPrecelle</h2>
-            <button onClick={e => {handleClick(e)}}>Volver a cargar los pokemones</button>
-            <div>
-                
-            </div>
+            <p>Esta es mi Home</p>
+            {
+                allPokemons ?
+                allPokemons.map(e => {
+                    return(
+                        <Card 
+                        key={e.id}
+                        name={e.name}
+                        image={e.img}
+                        types={e.types} />
+                    )
+                }) :
+                <h3>No existen pokemones</h3>
+            }
         </div>
     )
 }
