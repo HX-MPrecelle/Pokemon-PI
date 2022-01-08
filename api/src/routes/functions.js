@@ -6,7 +6,6 @@ const getApiInfo = async () => {
     try {
         let url = 'https://pokeapi.co/api/v2/pokemon/';
         let pokemones = [];
-        let pokesWithData = [];
         do {
             let info = await axios.get(url);
             let pokemonesApi = info.data;
@@ -20,23 +19,22 @@ const getApiInfo = async () => {
             url = pokemonesApi.next;
         } while (url != null && pokemones.length < 40); //ACA PUEDO LIMITARLOS A LOS QUE QUIERA TRAER
         // console.log(pokemones);
-        for (const pokemon of pokemones) {
-            let infoPoke = await axios.get(pokemon.url);
-            let dataPoke = infoPoke.data;
-            let poke = {
-                    id: dataPoke.id,
-                    name: dataPoke.name,
-                    img: dataPoke.sprites.front_default,
-                    types: dataPoke.types.map(e => e.type.name),
-                }
-            pokesWithData.push(poke);
-        };      
-        // console.log(pokesWithData)
+        let pokesWithData = await Promise.all(pokemones.map(async e => {
+            let pokemon = await axios.get(e.url);
+            return {
+                id: pokemon.data.id,
+                name: pokemon.data.name,
+                img: pokemon.data.sprites.front_default,
+                types: pokemon.data.types.map(e => e.type.name),
+            }
+        }));
+        // console.log(pokesWithData);
         return pokesWithData;
     } catch (e) {
         console.log(e);
     }
 }
+getApiInfo();
 
 //TRAIGO AL POKEMON ESPECIFICADO POR PARAMS (ID) DESDE LA API CON TODOS SUS DATOS NECESARIO PARA LA RUTA DE DETALLE.
 async function getPokemonById(id) {
