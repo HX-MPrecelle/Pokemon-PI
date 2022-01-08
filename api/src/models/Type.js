@@ -5,8 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('type', {
     name: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-  });
+      type: DataTypes.STRING
+  },
+}, {
+  createdAt: false,
+  updatedAt: false,
+})
 };
