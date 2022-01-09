@@ -34,7 +34,6 @@ const getApiInfo = async () => {
         console.log(e);
     }
 }
-getApiInfo();
 
 //TRAIGO AL POKEMON ESPECIFICADO POR PARAMS (ID) DESDE LA API CON TODOS SUS DATOS NECESARIO PARA LA RUTA DE DETALLE.
 async function getPokemonById(id) {
