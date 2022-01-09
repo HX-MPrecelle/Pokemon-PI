@@ -1,6 +1,4 @@
-
-const GET_POKEMONS = 'GET_POKEMONS';
-
+import { GET_POKEMONS } from "../actions";
 
 const initialState = {
     pokemons: [],
@@ -14,9 +12,10 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 pokemons: action.payload
             };
-        default:
-            return {...state};    
+        default: 
+            return {...state};
     };
+    
 };
 
 export default rootReducer;
