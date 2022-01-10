@@ -5,6 +5,8 @@ export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const FILTER_CREATED = 'FILTER_CREATED';
 export const ORDER_NAME = 'ORDER_NAME';
 export const FILTER_TYPE = 'FILTER_TYPE';
+export const ORDER_STR = 'FILTER_STR';
+
 
 export const getPokemons = () => {
     return async (dispatch) => {
@@ -56,3 +58,10 @@ export const filterType = (payload) => {
         payload
     };
 };
+
+export const filterStr = (payload) => {
+    return {
+        type: ORDER_STR,
+        payload
+    }
+}

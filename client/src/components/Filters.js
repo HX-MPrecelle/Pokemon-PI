@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getAlltypes, filterCreated, orderName, filterType } from "../actions";
+import { getAlltypes, filterCreated, orderName, filterType, filterStr } from "../actions";
 
 const Filters =  ({setCurrentPage, setOrder}) => {
   
@@ -14,6 +14,7 @@ const Filters =  ({setCurrentPage, setOrder}) => {
   const handleFilterCreated = (e) => {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
+    setCurrentPage(1);
   };
 
   const handleOrderName = (e) => {
@@ -25,19 +26,20 @@ const Filters =  ({setCurrentPage, setOrder}) => {
 
   const handleFilterType = (e) => {
     e.preventDefault();
-    dispatch(filterType(e.target.value));    
+    dispatch(filterType(e.target.value)); 
+    setCurrentPage(1);
+  };
+
+  const handleFilterStr = (e) => {
+    e.preventDefault();
+    dispatch(filterStr(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
   };
 
 
   return ( 
     <div>
-      <div>
-        <select onChange={e => {handleOrderName(e)}}>
-          <option>-</option>
-          <option value="asc">A - Z</option>
-          <option value="desc">Z - A</option>
-        </select>
-      </div>
       <div>
         <h4>Filters</h4>
         <label>Created - Api</label>
@@ -47,12 +49,6 @@ const Filters =  ({setCurrentPage, setOrder}) => {
           <option value="created">CREATED</option>
         </select>
 
-        {/* <label>Strength</label>
-        <select onChange={e => {handleFilterCreated(e)}}>
-          <option value="all">ALL</option>
-          <option value="api">API</option>
-          <option value="created">CREATED</option>
-        </select> */}
 
         <label>Types</label>
         <select onChange={e => {handleFilterType(e)}}>
@@ -64,7 +60,23 @@ const Filters =  ({setCurrentPage, setOrder}) => {
                 )
               })
             }
-          </select>
+        </select>
+      </div>
+
+      <div>
+        <h4>Order</h4>
+        <label>Strength</label>
+        <select onChange={e => {handleFilterStr(e)}}>
+          <option value="asc">ASC</option>
+          <option value="desc">DESC</option>
+        </select>
+
+        <label>Alphabetically</label>
+        <select onChange={e => {handleOrderName(e)}}>
+          <option>-</option>
+          <option value="asc">A - Z</option>
+          <option value="desc">Z - A</option>
+        </select>
       </div>
     </div>
    );

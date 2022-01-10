@@ -3,13 +3,14 @@ import {
     GET_ALL_TYPES, 
     FILTER_CREATED, 
     ORDER_NAME, 
-    FILTER_TYPE
+    FILTER_TYPE,
+    ORDER_STR
  } from "../actions";
 
 const initialState = {
     pokemons: [],
     allPokemons: [],
-    types: []
+    types: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -52,18 +53,29 @@ const rootReducer = (state = initialState, action) => {
                 pokemons: typeFiltered
             };
         case ORDER_NAME:
-            let sortedArr = action.payload === 'asc' ?
-                state.pokemons.sort((a, b) => {
+            let copy3 = state.pokemons;
+            let sortedName = action.payload === 'asc' ?
+                copy3.sort((a, b) => {
                     return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
 
                 }) :
-                state.pokemons.sort((a, b) => {
+                copy3.sort((a, b) => {
                     return b.name.toLowerCase().localeCompare(a.name.toLowerCase())
                 })
             return {
                 ...state,
-                pokemons: sortedArr
-            };
+                pokemons: sortedName
+            };          
+        case ORDER_STR:
+            let copy4 = state.pokemons;
+            let sortedStr = action.payload === 'asc' ?
+                copy4.sort((a, b) => a.attack - b.attack) :
+                copy4.sort((a, b) => b.attack - a.attack);
+            // console.table(sortedStr);    
+            return {
+                ...state,
+                pokemons: sortedStr
+            }
         default: 
             return {...state};
     };
