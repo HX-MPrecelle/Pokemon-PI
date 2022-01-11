@@ -67,6 +67,7 @@ const Filters =  ({setCurrentPage, setOrder}) => {
         <h4>Order</h4>
         <label>Strength</label>
         <select onChange={e => {handleFilterStr(e)}}>
+          <option>-</option>
           <option value="asc">ASC</option>
           <option value="desc">DESC</option>
         </select>
