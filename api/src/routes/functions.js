@@ -25,7 +25,9 @@ const getApiInfo = async () => {
                 id: pokemon.data.id,
                 name: pokemon.data.name,
                 img: pokemon.data.sprites.front_default,
-                types: pokemon.data.types.map(e => e.type.name),
+                types: pokemon.data.types.map(e => {
+                    return ({name: e.type.name})
+                }),
                 hp: pokemon.data.stats[0].base_stat,
                 attack: pokemon.data.stats[1].base_stat,
                 defense: pokemon.data.stats[2].base_stat,
@@ -41,16 +43,18 @@ const getApiInfo = async () => {
     }
 }
 
-//TRAIGO AL POKEMON ESPECIFICADO POR PARAMS (ID) DESDE LA API CON TODOS SUS DATOS NECESARIO PARA LA RUTA DE DETALLE.
-async function getPokemonById(id) {
+//TRAIGO AL POKEMON ESPECIFICADO POR PARAMS (ID) / O POR QUERY (NAME) DESDE LA API CON TODOS SUS DATOS NECESARIO PARA LA RUTA DE DETALLE.
+async function getPokemonDetail(arg) {
     try {
-        const apiData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const apiData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${arg}`);
         const data = await apiData.data;
         const pokemonData = {
             id: data.id,
             name: data.name,
             img: data.sprites.front_default,
-            types: data.types.map(e => e.type.name),
+            types: data.types.map(e => {
+                return ({name: e.type.name})
+            }),
             hp: data.stats[0].base_stat,
             attack: data.stats[1].base_stat,
             defense: data.stats[2].base_stat,
@@ -63,6 +67,8 @@ async function getPokemonById(id) {
         console.log(e);
     }
 }
+
+
 
 
 //TRAIGO TODOS LOS POKEMONES CREADOS DESDE LA BASE DE DATOS EN LA TABLA POKEMON, Y QUE INCLUYA LA TABLA TYPE CON SU ATRIBUTO NAME.
@@ -90,5 +96,5 @@ module.exports = {
     getApiInfo,
     getDbInfo,
     getAllPokemon,
-    getPokemonById
+    getPokemonDetail
 }

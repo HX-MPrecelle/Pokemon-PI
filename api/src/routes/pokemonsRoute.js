@@ -1,26 +1,21 @@
 const express = require('express');
-const {Pokemon} = require('../db');
-const { getPokemonById, getAllPokemon } = require('./functions');
+const {Pokemon, Type} = require('../db');
+const { getPokemonDetail, getAllPokemon } = require('./functions');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
         const {name} = req.query;
-        let pokemons = await getAllPokemon();
         if (name) {
-            let pokemonDataComp = [];
-            let pokemonName = pokemons.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
-            if (pokemonName.length) {
-                for (const pokemon of pokemonName) {
-                    let pokemonNameData = await getPokemonById(pokemon.id);
-                    pokemonDataComp.push(pokemonNameData);
-                }
-                return res.status(200).send(pokemonDataComp);
+            let poke = await getPokemonDetail(name);
+            if (poke) {
+                return res.status(200).send(poke);
             } else {
-                return res.status(404).send('No se encontró el pokemón');
+                return res.status(404).send('Pokemon not found');
             }
-        } 
+        }
+        let pokemons = await getAllPokemon();
         return res.status(200).send(pokemons);
     } catch (e) {
         console.log(e);
@@ -31,15 +26,10 @@ router.get('/:id', async (req, res) => {
     try {
         const {id} = req.params;
         if(id) {
-            let pokemons = await getAllPokemon();
-            let pokemonFind = pokemons.find(e => e.id == id);
-            // console.log(pokemonFind);
-            if (pokemonFind) {
-                let pokemonById = await getPokemonById(pokemonFind.id);
-                return res.status(200).send(pokemonById);
-            } else {
-                return res.status(404).send('No se encontró el pokemón');
-            }
+            let pokemonById = await getPokemonDetail(id);
+            return res.status(200).send(pokemonById);
+        } else {
+            return res.status(404).send('Pokemon not found');
         }
     } catch (e) {
         console.log(e);
@@ -48,7 +38,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const {name, hp, attack, defense, speed, height, weight, typeName} = req.body;
+        const {name, hp, attack, defense, speed, height, weight, img, types} = req.body;
         const pokemon = await Pokemon.create({
                 name,
                 hp,
@@ -57,15 +47,16 @@ router.post('/', async (req, res) => {
                 speed,
                 height,
                 weight,
+                img 
         });
     
         const typeDb = await Type.findAll({
             where: {
-                name: typeName,
+                name: types,
             }
         });
         pokemon.addType(typeDb);
-        res.status(200).send('Pokemón agregado con éxito');
+        res.status(201).send(pokemon);
     } catch (e) {
         console.log(e);
     }
