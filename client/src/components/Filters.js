@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { getAlltypes, filterCreated, orderName, filterType, filterStr } from "../actions";
+import SearchBar from "./SearchBar";
 
 const Filters =  ({setCurrentPage, setOrder}) => {
   
@@ -40,6 +41,10 @@ const Filters =  ({setCurrentPage, setOrder}) => {
 
   return ( 
     <div>
+      <div>
+        <SearchBar />
+      </div>
+
       <div>
         <h4>Filters</h4>
         <label>Created - Api</label>

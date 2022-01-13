@@ -11,8 +11,7 @@ const Pagination = ({pokemonsPerPage, allPokemons, pagination}) => {
         <nav>
             <ul>
                 {
-                    pageNumbers &&
-                    pageNumbers.map(number => (
+                    pageNumbers?.map(number => (
                         <li key={number}>
                             <a onClick={() => pagination(number)}>{number}</a>
                         </li>

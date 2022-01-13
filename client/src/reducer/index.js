@@ -4,13 +4,17 @@ import {
     FILTER_CREATED, 
     ORDER_NAME, 
     FILTER_TYPE,
-    ORDER_STR
+    ORDER_STR,
+    GET_POKEMON_NAME,
+    POST_POKEMON,
+    GET_DETAILS
  } from "../actions";
 
 const initialState = {
     pokemons: [],
     allPokemons: [],
     types: [],
+    pokeDetail: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -31,9 +35,9 @@ const rootReducer = (state = initialState, action) => {
             let copy = state.allPokemons;
             let createdFiltered;
             if (action.payload === 'created') {
-                createdFiltered = copy.filter(e => e.createdInDb);
+                createdFiltered = copy.filter(e => e.createdInBd);
             } else if (action.payload === 'api') {
-                createdFiltered = copy.filter(e => !e.createdInDb);
+                createdFiltered = copy.filter(e => !e.createdInBd);
             } else {
                 createdFiltered = copy;
             }
@@ -42,11 +46,11 @@ const rootReducer = (state = initialState, action) => {
                 pokemons: createdFiltered
             };
         case FILTER_TYPE:
-            let copyTwo = state.allPokemons;
-            let typeFiltered = action.payload === 'all' ? copyTwo : copyTwo.filter(e => e.types.includes(action.payload));
+            let copyTwo = state.pokemons;
+            let typeFiltered = action.payload === 'all' ? copyTwo : copyTwo.filter(e => e.types.some(e => e.name === action.payload));
             if(typeFiltered.length <= 0){
                 typeFiltered = copyTwo;   
-                alert('No se encontraron pokemons del tipo indicado'); 
+                alert('There are no pokemon of the indicated type');
             }; 
             return {
                 ...state,
@@ -57,7 +61,6 @@ const rootReducer = (state = initialState, action) => {
             let sortedName = action.payload === 'asc' ?
                 copy3.sort((a, b) => {
                     return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-
                 }) :
                 copy3.sort((a, b) => {
                     return b.name.toLowerCase().localeCompare(a.name.toLowerCase())
@@ -75,7 +78,21 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pokemons: sortedStr
+            };
+        case GET_POKEMON_NAME:
+            return {
+                ...state,
+                pokemons: action.payload
+            };
+        case GET_DETAILS:
+            return {
+                ...state,
+                pokeDetail: action.payload
             }
+        case POST_POKEMON:
+            return {
+                ...state
+            };
         default: 
             return {...state};
     };

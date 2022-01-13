@@ -6,7 +6,9 @@ export const FILTER_CREATED = 'FILTER_CREATED';
 export const ORDER_NAME = 'ORDER_NAME';
 export const FILTER_TYPE = 'FILTER_TYPE';
 export const ORDER_STR = 'FILTER_STR';
-
+export const GET_POKEMON_NAME = 'GET_POKEMON_NAME';
+export const POST_POKEMON = 'POST_POKEMON';
+export const GET_DETAILS = 'GET_DETAILS';
 
 export const getPokemons = () => {
     return async (dispatch) => {
@@ -65,3 +67,40 @@ export const filterStr = (payload) => {
         payload
     }
 }
+
+export const getPokemonByName = (name) => {
+    return async (dispatch) => {
+        try {
+            var json = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+            return dispatch({
+                type: GET_POKEMON_NAME,
+                payload: json.data
+            })
+        } catch (e) {
+            console.log(e);
+        };
+    };    
+};
+
+export const getDetail = (id) => {
+    return async (dispatch) => {
+        try{
+            var json = await axios.get(`http://localhost:3001/pokemons/${id}`);
+            return dispatch({
+                type: GET_DETAILS,
+                payload: json.data
+            })
+        } catch (e) {
+            console.log(e);
+        };
+    };
+};
+
+
+export const postPokemon = (payload) => {
+    return async () => {
+        var createPoke = await axios.post('http://localhost:3001/pokemons', payload);
+        console.log(createPoke);
+        return createPoke;
+    };
+};

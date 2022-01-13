@@ -4,6 +4,7 @@ import { getPokemons } from '../actions';
 import Card from './Card';
 import Filters from './Filters';
 import Pagination from './Pagination';
+import Nav from './Nav';
 
 export default function Home() {
 
@@ -29,11 +30,12 @@ export default function Home() {
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getPokemons());
-        alert('Se volvieron a cargar los pokemones');
+        alert('Pokemons arrived');
     }
 
     return(
         <div>
+            <Nav />
             <div>
                 <h1>PokeAPI</h1>
                 <h2>by MPrecelle</h2>
@@ -54,6 +56,7 @@ export default function Home() {
                     return(
                         <Card 
                         key={e.id}
+                        id={e.id}
                         name={e.name}
                         image={e.img}
                         types={e.types} />
