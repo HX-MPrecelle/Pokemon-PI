@@ -77,6 +77,7 @@ export const getPokemonByName = (name) => {
                 payload: json.data
             })
         } catch (e) {
+            alert('Pokemon not found')
             console.log(e);
         };
     };    
