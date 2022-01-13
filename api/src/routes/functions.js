@@ -24,7 +24,7 @@ const getApiInfo = async () => {
             return {
                 id: pokemon.data.id,
                 name: pokemon.data.name,
-                img: pokemon.data.sprites.front_default,
+                img: pokemon.data.sprites.other.home.front_default,
                 types: pokemon.data.types.map(e => {
                     return ({name: e.type.name})
                 }),
@@ -40,8 +40,8 @@ const getApiInfo = async () => {
         return pokesWithData;
     } catch (e) {
         console.log(e);
-    }
-}
+    };
+};
 
 //TRAIGO AL POKEMON ESPECIFICADO POR PARAMS (ID) / O POR QUERY (NAME) DESDE LA API CON TODOS SUS DATOS NECESARIO PARA LA RUTA DE DETALLE.
 async function getPokemonDetail(arg) {
@@ -51,7 +51,7 @@ async function getPokemonDetail(arg) {
         const pokemonData = {
             id: data.id,
             name: data.name,
-            img: data.sprites.front_default,
+            img: data.sprites.other.home.front_default,
             types: data.types.map(e => {
                 return ({name: e.type.name})
             }),
@@ -65,8 +65,8 @@ async function getPokemonDetail(arg) {
         return pokemonData;
     } catch (e) {
         console.log(e);
-    }
-}
+    };
+};
 
 
 
@@ -81,8 +81,8 @@ const getDbInfo = async () => {
                 attributes: [],
             },
         }
-    })
-}
+    });
+};
 
 //TRAIGO TODOS LOS POKEMONES, TANTO DE LA API COMO DE LA DB.
 const getAllPokemon = async () => {
@@ -90,7 +90,7 @@ const getAllPokemon = async () => {
     const dbInfo = await getDbInfo();
     const allPokemon = apiInfo.concat(dbInfo);
     return allPokemon;
-}
+};
 
 module.exports = {
     getApiInfo,
