@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import { getAlltypes, postPokemon } from '../actions';
+import { Link, useHistory } from 'react-router-dom';
+import { getAlltypes, postPokemon } from '../../actions';
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -11,6 +11,7 @@ const PokemonCreate = () => {
     const dispatch = useDispatch();
     const types = useSelector((state) => state.types);
     const [errors, setErrors] = useState({});
+    const history = useHistory();
     
     const [input, setInput] = useState({
         name: '', 
@@ -102,6 +103,7 @@ const PokemonCreate = () => {
                 types: [],
                 img: ''
             });
+            history.push('/home')
         } else {
             alert('Error. Check the form');
         }

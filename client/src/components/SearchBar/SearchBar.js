@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getPokemonByName, cleanPokemons } from '../actions';
+import { getPokemonByName, cleanPokemons } from '../../actions';
 
 const SearchBar = () => {
     

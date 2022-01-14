@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cleanPokemons, getPokemons } from '../actions';
-import Card from './Card';
-import Filters from './Filters';
-import Pagination from './Pagination';
-import Nav from './Nav';
-import Loading from './Loading';
+import { cleanPokemons, getPokemons } from '../../actions';
+import Card from '../Card/Card';
+import Filters from '../Filters/Filters';
+import Pagination from '../Pagination/Pagination';
+import Nav from '../Nav/Nav';
+import Loading from '../Loading/Loading';
 
 export default function Home() {
 

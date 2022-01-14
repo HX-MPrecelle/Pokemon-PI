@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import noImage from '../img/noImage.png';
+import noImage from '../../img/noImage.png';
 
 export default function Card({name, image, types, id}) {
     

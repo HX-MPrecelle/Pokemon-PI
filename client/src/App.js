@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import Home from './components/Home';
-import PokemonCreate from './components/PokemonCreate';
-import Detail from './components/Detail';
+import LandingPage from './components/LandingPage/LandingPage';
+import Home from './components/Home/Home';
+import PokemonCreate from './components/PokemonCreate/PokemonCreate';
+import Detail from './components/Detail/Detail';
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getAlltypes, filterCreated, orderName, filterType, filterStr } from "../actions";
-import SearchBar from "./SearchBar";
+import { getAlltypes, filterCreated, orderName, filterType, filterStr } from "../../actions";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Filters =  ({setCurrentPage, setOrder}) => {
   
