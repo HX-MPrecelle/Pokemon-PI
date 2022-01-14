@@ -9,6 +9,7 @@ export const ORDER_STR = 'FILTER_STR';
 export const GET_POKEMON_NAME = 'GET_POKEMON_NAME';
 export const POST_POKEMON = 'POST_POKEMON';
 export const GET_DETAILS = 'GET_DETAILS';
+export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 
 export const getPokemons = () => {
     return async (dispatch) => {
@@ -98,10 +99,24 @@ export const getDetail = (id) => {
 };
 
 
+export const cleanDetail = (dispatch) => {
+    return dispatch({
+        type: CLEAN_DETAIL,
+        payload: []
+    })
+};
+
 export const postPokemon = (payload) => {
     return async () => {
-        var createPoke = await axios.post('http://localhost:3001/pokemons', payload);
-        console.log(createPoke);
-        return createPoke;
+        try {
+            var createPoke = await axios.post('http://localhost:3001/pokemons', payload);
+            console.log(createPoke);
+            alert('New pokemón is created!');
+            return createPoke;
+        } catch (e) {
+            alert('Pokemon name already exist')
+            console.log(e);
+        }
     };
 };
+

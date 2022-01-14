@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../actions";
+import { getDetail, cleanDetail } from "../actions";
 import { useEffect } from "react";
+import noImage from '../img/noImage.png';
+import Loading from "./Loading";
 
 const Detail = (props) => {
 
@@ -11,6 +13,9 @@ const Detail = (props) => {
 
     useEffect(() => {
         dispatch(getDetail(props.match.params.id))
+        return () => {
+            dispatch(cleanDetail(dispatch))
+        }
     }, [dispatch, props.match.params.id])
 
 
@@ -21,10 +26,10 @@ const Detail = (props) => {
                 <div>
                     <h2>Name: {myPokemon[0].name}</h2>
                     <p>#{myPokemon[0].id}</p>
-                    <img src={myPokemon[0].img} alt="img not found" alt="250px" width="200px" />
+                    <img src={myPokemon[0].img ? myPokemon[0].img : noImage} alt="img not found" alt="250px" width="200px" />
                     <h3>Types: {myPokemon[0].types?.map(e => {
                         return (
-                            <p>{e.name}</p>
+                            <p key={e.name}>{e.name}</p>
                         )
                     })} </h3>
                     <h5>HP:{myPokemon[0].hp}</h5>
@@ -36,7 +41,7 @@ const Detail = (props) => {
                     <h5>{myPokemon[0].createdInBd ? 'FAKE' : 'ORIGINAL'}</h5>
                 </div> : 
                 <div>
-                    <p>Loading...</p>
+                    <Loading />
                 </div>
             }
             <Link to='/home'>Volver</Link>

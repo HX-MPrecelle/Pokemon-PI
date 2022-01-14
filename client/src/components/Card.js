@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import noImage from '../img/noImage.png';
 
 export default function Card({name, image, types, id}) {
     
     // console.log(name, image, types)
     return(
         <div>
-            <img src={image} alt="img not found" width="200px" height="250vh" />
+            <img src={image ? image : noImage} alt="img not found" width="200px" height="250vh" />
             <h2>{name}</h2>
             {
                 types && 

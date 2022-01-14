@@ -5,6 +5,7 @@ import Card from './Card';
 import Filters from './Filters';
 import Pagination from './Pagination';
 import Nav from './Nav';
+import Loading from './Loading';
 
 export default function Home() {
 
@@ -33,36 +34,42 @@ export default function Home() {
         alert('Pokemons arrived');
     }
 
+
     return(
         <div>
-            <Nav />
-            <div>
-                <h1>PokeAPI</h1>
-                <h2>by MPrecelle</h2>
-            </div>
-            <div>
-                <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
-            </div>
-            <div>
-                <button onClick={e => {handleClick(e)}}>Volver a cargar pokemones</button>
-            </div>
-            <Pagination
-                pokemonsPerPage={pokemonsPerPage}
-                allPokemons={allPokemons.length}
-                pagination={pagination}
-            />
-            {
-                currentPokemons?.map(e => {
-                    return(
-                        <Card 
-                        key={e.id}
-                        id={e.id}
-                        name={e.name}
-                        image={e.img}
-                        types={e.types} />
-                    )
-                })
-            }
+            { allPokemons.length > 0 ?
+                <div>
+                <Nav />
+                <div>
+                    <h1>PokeAPI</h1>
+                    <h2>by MPrecelle</h2>
+                </div>
+                <div>
+                    <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
+                </div>
+                <div>
+                    <button onClick={e => {handleClick(e)}}>Clear filters</button>
+                </div>
+                <Pagination
+                    pokemonsPerPage={pokemonsPerPage}
+                    allPokemons={allPokemons.length}
+                    pagination={pagination}
+                />
+                {
+                    currentPokemons?.map(e => {
+                        return(
+                            <Card 
+                            key={e.id}
+                            id={e.id}
+                            name={e.name}
+                            image={e.img}
+                            types={e.types} />
+                        )
+                    })
+                }
+                </div> :
+                <Loading />
+            } 
         </div>
     )
 };

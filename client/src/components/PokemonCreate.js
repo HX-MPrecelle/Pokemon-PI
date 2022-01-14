@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getAlltypes, postPokemon } from '../actions';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 const PokemonCreate = () => {
     
     const dispatch = useDispatch();
-    const history = useHistory();
     const types = useSelector((state) => state.types);
     const [errors, setErrors] = useState({});
     
@@ -92,7 +91,6 @@ const PokemonCreate = () => {
         ) {
 
             dispatch(postPokemon(input));
-            alert('New pokemón is created!');
             setInput({
                 name: '', 
                 hp: '', 
@@ -104,7 +102,6 @@ const PokemonCreate = () => {
                 types: [],
                 img: ''
             });
-            history.push('/home'); //para redirigirme al home cuando se submitea
         } else {
             alert('Error. Check the form');
         }
