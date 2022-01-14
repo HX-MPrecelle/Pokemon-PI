@@ -10,6 +10,7 @@ export const GET_POKEMON_NAME = 'GET_POKEMON_NAME';
 export const POST_POKEMON = 'POST_POKEMON';
 export const GET_DETAILS = 'GET_DETAILS';
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const CLEAN_POKEMONS = 'CLEAN_POKEMONS';
 
 export const getPokemons = () => {
     return async (dispatch) => {
@@ -25,6 +26,14 @@ export const getPokemons = () => {
         };     
     };
 };
+
+export const cleanPokemons = (dispatch) => {
+    return dispatch({
+        type: CLEAN_POKEMONS,
+        payload: []
+    })
+};
+
 
 export const getAlltypes = () => {
     return async (dispatch) => {

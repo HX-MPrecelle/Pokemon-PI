@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPokemons } from '../actions';
+import { cleanPokemons, getPokemons } from '../actions';
 import Card from './Card';
 import Filters from './Filters';
 import Pagination from './Pagination';
@@ -30,8 +30,8 @@ export default function Home() {
 
     const handleClick = (e) => {
         e.preventDefault();
+        dispatch(cleanPokemons(dispatch));
         dispatch(getPokemons());
-        alert('Pokemons arrived');
     }
 
 
