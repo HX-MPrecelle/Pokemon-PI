@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import { getAlltypes, postPokemon } from '../../actions';
 import { useDispatch, useSelector } from "react-redux";
+import styles from './PokemonCreate.module.css'
 
 
 
@@ -75,6 +76,7 @@ const PokemonCreate = () => {
             ...input,
             types: [...input.types, e.target.value]
         })
+        e.target.value = 'Select type';
     }
 
     const handleSubmit = e => {
@@ -121,54 +123,33 @@ const PokemonCreate = () => {
     }, [dispatch])
 
     return ( 
-        <div>
+        <div className={styles.container}>
             <Link to='/home'>
-                <button>Go Back</button>
+                <button className={styles.btn}>Go Back</button>
             </Link>
-            <h2>Create a pokemón!</h2>
-            <form onSubmit={e => {handleSubmit(e)}}>
-                <div>
-                    <label>Name:</label>
-                    <input type="text" value={input.name} name='name' onChange={e => {handleChange(e)}} placeholder="Name" />
-                    <p>{errors.name}</p>
-                </div>
-                <div>
-                    <label>HP:</label>
-                    <input type="number" value={input.hp} name='hp' onChange={e => {handleChange(e)}} placeholder="HP" />
+            <form className={styles.form} onSubmit={e => {handleSubmit(e)}}>
+            <h2 className={styles.h2}>Create a pokemón!</h2>
+                <div className={styles.div}>
+                    <input className={styles.input} type="text" value={input.name} name='name' onChange={e => {handleChange(e)}} placeholder="Name" />
+                    <p className={styles.p}>{errors.name}</p>
+                    <input className={styles.input} type="number" value={input.hp} name='hp' onChange={e => {handleChange(e)}} placeholder="HP" />
                     <p>{errors.hp}</p>
-                </div>
-                <div>
-                    <label>Attack:</label>
-                    <input type="number" value={input.attack} name='attack' onChange={e => {handleChange(e)}} placeholder="Attack" />
+                    <input className={styles.input} type="number" value={input.attack} name='attack' onChange={e => {handleChange(e)}} placeholder="Attack" />
                     <p>{errors.attack}</p>
-                </div>
-                <div>
-                    <label>Defense:</label>
-                    <input type="number" value={input.defense} name='defense' onChange={e => {handleChange(e)}} placeholder="Defense" />
+                    <input className={styles.input} type="number" value={input.defense} name='defense' onChange={e => {handleChange(e)}} placeholder="Defense" />
                     <p>{errors.defense}</p>
-                </div>
-                <div>
-                    <label>Speed:</label>
-                    <input type="number" value={input.speed} name='speed' onChange={e => {handleChange(e)}} placeholder="Speed" />
+                    <input className={styles.input} type="number" value={input.speed} name='speed' onChange={e => {handleChange(e)}} placeholder="Speed" />
                     <p>{errors.speed}</p>
-                </div>
-                <div>
-                    <label>Height:</label>
-                    <input type="number" value={input.height} name='height' onChange={e => {handleChange(e)}} placeholder="Height" />
+                    <input className={styles.input} type="number" value={input.height} name='height' onChange={e => {handleChange(e)}} placeholder="Height" />
                     <p>{errors.height}</p>
-                </div>
-                <div>
-                    <label>Weight:</label>
-                    <input type="number" value={input.weight} name='weight' onChange={e => {handleChange(e)}} placeholder="Weight" />
+                    <input className={styles.input} type="number" value={input.weight} name='weight' onChange={e => {handleChange(e)}} placeholder="Weight" />
                     <p>{errors.weight}</p>
-                </div>
-                <div>
-                    <label>Image:</label>
-                    <input type="text" value={input.img} name='img' onChange={e => {handleChange(e)}} placeholder="URL Image..." />
+                    <input className={styles.input} type="text" value={input.img} name='img' onChange={e => {handleChange(e)}} placeholder="URL Image..." />
                     <p>{errors.img}</p>
                 </div>
                 <div>
-                    <select onChange={e => {handleSelect(e)}}>
+                    <select className={styles.select} onChange={e => {handleSelect(e)}}>
+                        <option>Select type</option>
                         {
                             types?.map(e => {
                                 return (
@@ -180,15 +161,15 @@ const PokemonCreate = () => {
                             {
                                 input.types.map(e => {
                                     return (
-                                        <div key={e}>
-                                            <p>{e}</p>
-                                            <button onClick={() => {handleDelete(e)}}>x</button>
+                                        <div className={styles.typesSelect} key={e}>
+                                            <p className={styles.pTypes}>{e}</p>
+                                            <button className={styles.btnDelete} onClick={() => {handleDelete(e)}}>x</button>
                                         </div>
                                     )
                                 }) //para poder ver que fui seleccionando
                             }
                 </div>
-            <button type='submit'>Create!</button>
+            <button className={styles.btnCreate} type='submit'>Create!</button>
             </form>
         </div>
      );

@@ -1,10 +1,12 @@
 import React from 'react';
+import loading from '../../img/loading.png'
+import styles from './Loading.module.css'
 
 const Loading = () => {
 
     return ( 
-        <div>
-            <h1>Loading...</h1>
+        <div className={styles.div}>
+            <div className={styles.preloader}></div>
         </div>
      );
 }

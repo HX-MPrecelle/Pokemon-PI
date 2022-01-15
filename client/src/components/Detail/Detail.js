@@ -5,6 +5,7 @@ import { getDetail, cleanDetail, cleanPokemons } from "../../actions";
 import { useEffect } from "react";
 import noImage from '../../img/noImage.png';
 import Loading from "../Loading/Loading";
+import styles from './Detail.module.css'
 
 const Detail = (props) => {
 
@@ -23,28 +24,38 @@ const Detail = (props) => {
         <div>
             {
                 myPokemon.length > 0 ?
-                <div>
-                    <h2>Name: {myPokemon[0].name}</h2>
-                    <p>#{myPokemon[0].id}</p>
-                    <img src={myPokemon[0].img ? myPokemon[0].img : noImage} alt="img not found" alt="250px" width="200px" />
-                    <h3>Types: {myPokemon[0].types?.map(e => {
-                        return (
-                            <p key={e.name}>{e.name}</p>
-                        )
-                    })} </h3>
-                    <h5>HP:{myPokemon[0].hp}</h5>
-                    <h5>Attack:{myPokemon[0].attack}</h5>
-                    <h5>Defense:{myPokemon[0].defense}</h5>
-                    <h5>Speed:{myPokemon[0].speed}</h5>
-                    <h5>Height:{myPokemon[0].height}</h5>
-                    <h5>Weight:{myPokemon[0].weight}</h5>
-                    <h5>{myPokemon[0].createdInBd ? 'FAKE' : 'ORIGINAL'}</h5>
+                <div className={styles.container}>
+                    <div className={styles.card}>
+                        <h2 className={styles.h2}>{myPokemon[0].name.charAt(0).toUpperCase() + myPokemon[0].name.slice(1)}</h2>
+                        <p className={styles.p}>#{myPokemon[0].id}</p>
+                        <img src={myPokemon[0].img ? myPokemon[0].img : noImage} alt="img not found" alt="250px" width="200px" />
+                        <div className={styles.types}>
+                            <h3>{myPokemon[0].types?.map((e, k) => {
+                                    return (
+                                        <div className={styles.types} key={k}>
+                                            <img className={styles.typesImg} src={e.img} alt='X' />
+                                            <p className={styles.text}>{e.name.charAt(0).toUpperCase() + e.name.slice(1)}</p>
+                                        </div>
+                                    )
+                                })} </h3>
+                        </div>
+                        <h5 className={styles.h5}>HP:  {myPokemon[0].hp}</h5>
+                        <h5 className={styles.h5}>Attack:  {myPokemon[0].attack}</h5>
+                        <h5 className={styles.h5}>Defense:  {myPokemon[0].defense}</h5>
+                        <h5 className={styles.h5}>Speed:  {myPokemon[0].speed}</h5>
+                        <h5 className={styles.h5}>Height:  {myPokemon[0].height}</h5>
+                        <h5 className={styles.h5}>Weight:  {myPokemon[0].weight}</h5>
+                    </div>
                 </div> : 
                 <div>
                     <Loading />
                 </div>
             }
-            <Link to='/home'>Volver</Link>
+            <div>
+            <Link to='/home'>
+                <button className={styles.btn}>Go back</button>
+            </Link>
+            </div>
         </div>
         
      );
