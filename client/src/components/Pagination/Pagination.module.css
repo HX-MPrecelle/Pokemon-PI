@@ -1,0 +1,30 @@
+.list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 9.5vw;
+    padding: 20px;
+    width: 50vw;
+    height: 5vh;
+    gap: 0.3vw;
+}
+
+.items {
+    text-align: center;
+    list-style: none;
+    border: 1px solid #f3cf3d4d;
+    border-radius: 50%;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    background-color: #f3cf3d4d;
+}
+
+.a {
+    color: #f3cf3d4d;
+    font-family: 'Verdana', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}

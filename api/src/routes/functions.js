@@ -26,7 +26,10 @@ const getApiInfo = async () => {
                 name: pokemon.data.name,
                 img: pokemon.data.sprites.other.home.front_default,
                 types: pokemon.data.types.map(e => {
-                    return ({name: e.type.name})
+                    return ({
+                        name: e.type.name,
+                        img: `https://typedex.app/types/${e.type.name}.png`,
+                    })
                 }),
                 hp: pokemon.data.stats[0].base_stat,
                 attack: pokemon.data.stats[1].base_stat,
@@ -53,7 +56,10 @@ async function getPokemonDetail(arg) {
             name: data.name,
             img: data.sprites.other.home.front_default,
             types: data.types.map(e => {
-                return ({name: e.type.name})
+                return ({
+                    name: e.type.name,
+                    img: `https://typedex.app/types/${e.type.name}.png`,
+                })
             }),
             hp: data.stats[0].base_stat,
             attack: data.stats[1].base_stat,

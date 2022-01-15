@@ -1,0 +1,31 @@
+.img{
+    width: 8vw;
+    height: 8vw;
+}
+
+.types {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1vh;
+    text-decoration: none;
+}
+
+.typesImg {
+    width: 2vw;
+    height: 2vw;
+}
+
+.text {
+    text-decoration: none;
+    font-family: 'Verdana', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(48, 30, 9, 0.616);
+}
+
+.none {
+    text-decoration: none;
+    color: rgba(48, 30, 9, 0.616);
+}

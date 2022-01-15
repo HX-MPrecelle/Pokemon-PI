@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './Pagination.module.css'
 
 const Pagination = ({pokemonsPerPage, allPokemons, pagination}) => {
 
@@ -9,11 +10,11 @@ const Pagination = ({pokemonsPerPage, allPokemons, pagination}) => {
 
     return ( 
         <nav>
-            <ul>
+            <ul className={styles.list}>
                 {
                     pageNumbers?.map(number => (
-                        <li key={number}>
-                            <a onClick={() => pagination(number)}>{number}</a>
+                        <li className={styles.items} key={number}>
+                            <a className={styles.a} onClick={() => pagination(number)}>{number}</a>
                         </li>
                     ))
                 }

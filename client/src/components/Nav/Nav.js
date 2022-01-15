@@ -1,17 +1,18 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import pokemonImg from '../../img/pokemonTitle.png'
+import styles from './Nav.module.css'
 
 const Nav = () => {
     return (
         <header>
-            <nav>
+            <nav className={styles.nav}>
                 <div>
-                    <img src={pokemonImg} alt="img not found" width='300px' height='150px' />   
+                    <img src={pokemonImg} alt="img not found" className={styles.img} /> 
                 </div>
-                <div>
+                <div>  
                     <Link to='/create'>
-                        <button>Create a pokemon</button>
+                        <button className={styles.btn}>Create a pokemon</button>
                     </Link>
                 </div>
             </nav>
