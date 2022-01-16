@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
-import { getAlltypes, postPokemon } from '../../actions';
+import { getAlltypes, postPokemon, cleanPokemons } from '../../actions';
 import { useDispatch, useSelector } from "react-redux";
 import styles from './PokemonCreate.module.css'
 
@@ -105,6 +105,7 @@ const PokemonCreate = () => {
                 types: [],
                 img: ''
             });
+            dispatch(cleanPokemons(dispatch));
             history.push('/home')
         } else {
             alert('Error. Check the form');
@@ -133,19 +134,19 @@ const PokemonCreate = () => {
                     <input className={styles.input} type="text" value={input.name} name='name' onChange={e => {handleChange(e)}} placeholder="Name" />
                     <p className={styles.p}>{errors.name}</p>
                     <input className={styles.input} type="number" value={input.hp} name='hp' onChange={e => {handleChange(e)}} placeholder="HP" />
-                    <p>{errors.hp}</p>
+                    <p className={styles.p}>{errors.hp}</p>
                     <input className={styles.input} type="number" value={input.attack} name='attack' onChange={e => {handleChange(e)}} placeholder="Attack" />
-                    <p>{errors.attack}</p>
+                    <p className={styles.p}>{errors.attack}</p>
                     <input className={styles.input} type="number" value={input.defense} name='defense' onChange={e => {handleChange(e)}} placeholder="Defense" />
-                    <p>{errors.defense}</p>
+                    <p className={styles.p}>{errors.defense}</p>
                     <input className={styles.input} type="number" value={input.speed} name='speed' onChange={e => {handleChange(e)}} placeholder="Speed" />
-                    <p>{errors.speed}</p>
+                    <p className={styles.p}>{errors.speed}</p>
                     <input className={styles.input} type="number" value={input.height} name='height' onChange={e => {handleChange(e)}} placeholder="Height" />
-                    <p>{errors.height}</p>
+                    <p className={styles.p}>{errors.height}</p>
                     <input className={styles.input} type="number" value={input.weight} name='weight' onChange={e => {handleChange(e)}} placeholder="Weight" />
-                    <p>{errors.weight}</p>
+                    <p className={styles.p}>{errors.weight}</p>
                     <input className={styles.input} type="text" value={input.img} name='img' onChange={e => {handleChange(e)}} placeholder="URL Image..." />
-                    <p>{errors.img}</p>
+                    <p className={styles.p}>{errors.img}</p>
                 </div>
                 <div>
                     <select className={styles.select} onChange={e => {handleSelect(e)}}>
