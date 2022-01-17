@@ -14,9 +14,6 @@ describe('Pokemon model', () => {
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
-      it('should work when its a valid name', () => {
-        Pokemon.create({ name: 'Pikachu' });
-      });
     });
   });
 });
