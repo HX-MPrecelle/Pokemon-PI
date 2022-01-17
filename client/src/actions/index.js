@@ -12,6 +12,7 @@ export const GET_DETAILS = 'GET_DETAILS';
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 export const CLEAN_POKEMONS = 'CLEAN_POKEMONS';
 
+
 export const getPokemons = () => {
     return async (dispatch) => {
         try {
@@ -87,7 +88,8 @@ export const getPokemonByName = (name) => {
                 payload: json.data
             })
         } catch (e) {
-            alert('Pokemon not found')
+            alert('Pokemon not found');
+            window.location.href = "http://localhost:3000/home";
             console.log(e);
         };
     };    
