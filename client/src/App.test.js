@@ -6,3 +6,4 @@ test('renders learn react link', () => {
   const linkElement = screen.getByText('by MPrecelle');
   expect(linkElement).toBeInTheDocument();
 });
+
