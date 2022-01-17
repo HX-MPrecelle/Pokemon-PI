@@ -15,7 +15,7 @@ export default function Home() {
     //Paginado acá abajo
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
-    const [order, setOrder] = useState('');
+    const [order, setOrder] = useState(''); //Para modificar el estado local y me ayude al renderizado
     const indexOfLastPokemon = currentPage * pokemonsPerPage;
     const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
     // console.log(allPokemons);
