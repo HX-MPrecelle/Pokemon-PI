@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     const allPokesName = await getAllPokemon();
     try {
         if (name) {
-            let poke = await allPokesName.filter(e => e.name.toLowerCase() === name.toLowerCase());
+            let poke = allPokesName.filter(e => e.name.toLowerCase() === name.toLowerCase());
             poke.length ? res.status(200).send(poke) : res.status(404).send('Pokemon not found'); 
         } else {
             let pokemons = await getAllPokemon();
@@ -25,13 +25,14 @@ router.get('/:id', async (req, res) => {
     const allPokesId = await getAllPokemon(); 
     try {
         if(id) {
-            let pokemonById = await allPokesId.filter(e => e.id == id);
+            let pokemonById = allPokesId.filter(e => e.id == id);
             pokemonById.length ? res.status(200).send(pokemonById) : res.status(404).send('Pokemon not found')
         } 
     } catch (e) {
         console.log(e);
     }
 });
+
 
 router.post('/', async (req, res) => {
     const {name, hp, attack, defense, speed, height, weight, img, types} = req.body;
