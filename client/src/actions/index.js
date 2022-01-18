@@ -95,19 +95,31 @@ export const getPokemonByName = (name) => {
     };    
 };
 
-export const getDetail = (id) => {
-    return async (dispatch) => {
-        try{
-            var json = await axios.get(`http://localhost:3001/pokemons/${id}`);
-            return dispatch({
-                type: GET_DETAILS,
-                payload: json.data
-            })
-        } catch (e) {
-            console.log(e);
-        };
-    };
-};
+// export const getDetail = (id) => {
+//     return async (dispatch) => {
+//         try{
+//             var json = await axios.get(`http://localhost:3001/pokemons/${id}`);
+//             return dispatch({
+//                 type: GET_DETAILS,
+//                 payload: json.data
+//             })
+//         } catch (e) {
+//             console.log(e);
+//         };
+//     };
+// };
+
+export function getDetailPromise(id) {
+    return function (dispatch) {
+        axios.get(`http://localhost:3001/pokemons/${id}`)
+        .then(res => res.data)
+        .then(res => dispatch({
+            type: GET_DETAILS,
+            payload: res
+        }))
+        .catch(err => console.log(err))
+    }
+}
 
 
 export const cleanDetail = (dispatch) => {

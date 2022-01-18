@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, cleanDetail, cleanPokemons } from "../../actions";
+import { getDetailPromise, cleanDetail, cleanPokemons } from "../../actions";
 import { useEffect } from "react";
 import noImage from '../../img/noImage.png';
 import Loading from "../Loading/Loading";
@@ -13,7 +13,7 @@ const Detail = (props) => {
     const myPokemon = useSelector((state) => state.pokeDetail)
 
     useEffect(() => {
-        dispatch(getDetail(props.match.params.id))
+        dispatch(getDetailPromise(props.match.params.id))
         return () => {
             dispatch(cleanDetail(dispatch), cleanPokemons(dispatch))
         }
