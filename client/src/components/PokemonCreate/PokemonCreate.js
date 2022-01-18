@@ -33,26 +33,26 @@ const PokemonCreate = () => {
     
     const validate = (input) => {
             let errors = {};
-            if (!noEmpty.test(input.name) || !validateName.test(input.name)) {
-            errors.name = "Name required. Only string without numbers";
+            if (!noEmpty.test(input.name) || !validateName.test(input.name) || input.name.length < 3) {
+            errors.name = "Name required. Only string of more than two characters and without numbers";
             }
-            if (!validateNum.test(input.hp)) {
-                errors.hp = "Number required";
+            if (!validateNum.test(input.hp) || parseInt(input.hp) < 1 ) {
+                errors.hp = "Number required. Higher than one";
             }
-            if (!validateNum.test(input.attack)) {
-                errors.attack = "Number required";
+            if (!validateNum.test(input.attack) || parseInt(input.attack) < 1) {
+                errors.attack = "Number required. Higher than one";
             }
-            if (!validateNum.test(input.defense)) {
-                errors.defense = "Number required";
+            if (!validateNum.test(input.defense) || parseInt(input.defense) < 1) {
+                errors.defense = "Number required. Higher than one";
             }
-            if (!validateNum.test(input.speed)) {
-                errors.speed = "Number required";
+            if (!validateNum.test(input.speed) || parseInt(input.speed) < 1) {
+                errors.speed = "Number required. Higher than one";
             }
-            if (!validateNum.test(input.height)) {
-                errors.height = "Number required";
+            if (!validateNum.test(input.height) || parseInt(input.height) < 1) {
+                errors.height = "Number required. Higher than one";
             }
-            if (!validateNum.test(input.weight)) {
-                errors.weight = "Number required";
+            if (!validateNum.test(input.weight) || parseInt(input.weight) < 1) {
+                errors.weight = "Number required. Higher than one";
             }
             if (!validateUrl.test(input.img)) {
             errors.img = "URL required";
