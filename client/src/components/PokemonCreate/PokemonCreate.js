@@ -57,6 +57,7 @@ const PokemonCreate = () => {
             if (!validateUrl.test(input.img)) {
             errors.img = "URL required";
             }
+
             return errors;
         };
 
@@ -72,11 +73,15 @@ const PokemonCreate = () => {
     }
 
     const handleSelect = e => {
-        setInput({
-            ...input,
-            types: [...input.types, e.target.value]
-        })
-        e.target.value = 'Select type';
+        if (input.types.length < 2) {
+            setInput({
+                ...input,
+                types: [...input.types, e.target.value]
+            })
+            e.target.value = 'Select type';
+        } else {
+            alert('No se pueden elegir mas de dos tipos de pokemon')
+        }
     }
 
     const handleSubmit = e => {
