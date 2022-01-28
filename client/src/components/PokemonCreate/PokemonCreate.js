@@ -136,22 +136,34 @@ const PokemonCreate = () => {
             <form className={styles.form} onSubmit={e => {handleSubmit(e)}}>
             <h2 className={styles.h2}>Create a pokemón!</h2>
                 <div className={styles.div}>
-                    <input className={styles.input} type="text" value={input.name} name='name' onChange={e => {handleChange(e)}} placeholder="Name" />
-                    <p className={styles.p}>{errors.name}</p>
-                    <input className={styles.input} type="number" value={input.hp} name='hp' onChange={e => {handleChange(e)}} placeholder="HP" />
-                    <p className={styles.p}>{errors.hp}</p>
-                    <input className={styles.input} type="number" value={input.attack} name='attack' onChange={e => {handleChange(e)}} placeholder="Attack" />
-                    <p className={styles.p}>{errors.attack}</p>
-                    <input className={styles.input} type="number" value={input.defense} name='defense' onChange={e => {handleChange(e)}} placeholder="Defense" />
-                    <p className={styles.p}>{errors.defense}</p>
-                    <input className={styles.input} type="number" value={input.speed} name='speed' onChange={e => {handleChange(e)}} placeholder="Speed" />
-                    <p className={styles.p}>{errors.speed}</p>
-                    <input className={styles.input} type="number" value={input.height} name='height' onChange={e => {handleChange(e)}} placeholder="Height" />
-                    <p className={styles.p}>{errors.height}</p>
-                    <input className={styles.input} type="number" value={input.weight} name='weight' onChange={e => {handleChange(e)}} placeholder="Weight" />
-                    <p className={styles.p}>{errors.weight}</p>
-                    <input className={styles.input} type="text" value={input.img} name='img' onChange={e => {handleChange(e)}} placeholder="URL Image..." />
-                    <p className={styles.p}>{errors.img}</p>
+                    <div className={styles.divito}>
+                        <label className={styles.label}>Name:</label>
+                        <input className={styles.input} type="text" value={input.name} name='name' onChange={e => {handleChange(e)}} placeholder="Name" />
+                        <p className={styles.p}>{errors.name}</p>
+                        <label className={styles.label}>HP:</label>
+                        <input className={styles.input} type="number" value={input.hp} name='hp' onChange={e => {handleChange(e)}} placeholder="HP" />
+                        <p className={styles.p}>{errors.hp}</p>
+                        <label className={styles.label}>Attack:</label>
+                        <input className={styles.input} type="number" value={input.attack} name='attack' onChange={e => {handleChange(e)}} placeholder="Attack" />
+                        <p className={styles.p}>{errors.attack}</p>
+                        <label className={styles.label}>Defense:</label>
+                        <input className={styles.input} type="number" value={input.defense} name='defense' onChange={e => {handleChange(e)}} placeholder="Defense" />
+                        <p className={styles.p}>{errors.defense}</p>
+                    </div>
+                    <div className={styles.divito}>
+                        <label className={styles.label}>Speed:</label>
+                        <input className={styles.input} type="number" value={input.speed} name='speed' onChange={e => {handleChange(e)}} placeholder="Speed" />
+                        <p className={styles.p}>{errors.speed}</p>
+                        <label className={styles.label}>Height:</label>
+                        <input className={styles.input} type="number" value={input.height} name='height' onChange={e => {handleChange(e)}} placeholder="Height" />
+                        <p className={styles.p}>{errors.height}</p>
+                        <label className={styles.label}>Weight:</label>
+                        <input className={styles.input} type="number" value={input.weight} name='weight' onChange={e => {handleChange(e)}} placeholder="Weight" />
+                        <p className={styles.p}>{errors.weight}</p>
+                        <label className={styles.label}>Image:</label>
+                        <input className={styles.input} type="text" value={input.img} name='img' onChange={e => {handleChange(e)}} placeholder="URL Image..." />
+                        <p className={styles.p}>{errors.img}</p>
+                    </div>
                 </div>
                 <div>
                     <select className={styles.select} onChange={e => {handleSelect(e)}}>
