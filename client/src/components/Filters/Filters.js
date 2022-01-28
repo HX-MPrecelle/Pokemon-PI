@@ -70,18 +70,14 @@ const Filters =  ({setCurrentPage, setOrder}) => {
 
       <div>
         <h4 className={styles.h4}>Order</h4>
-        <label className={styles.label}>Strength</label>
-        <select className={styles.select} onChange={e => {handleFilterStr(e)}}>
-          <option>-</option>
-          <option value="asc">ASC</option>
-          <option value="desc">DESC</option>
-        </select>
-
-        <label className={styles.label}>Alphabetically</label>
-        <select className={styles.select} onChange={e => {handleOrderName(e)}}>
-          <option>-</option>
-          <option value="asc">A - Z</option>
-          <option value="desc">Z - A</option>
+        <select className={styles.select}>
+            <option>-</option>
+            <option className={styles.order}>Strength</option>
+            <option value="asc" onClick={e => {handleFilterStr(e)}}>ASC</option>
+            <option value="desc"  onClick={e => {handleFilterStr(e)}}>DESC</option>
+            <option className={styles.order}>Alphabetically</option>
+            <option value="asc" onClick={e => {handleOrderName(e)}}>A - Z</option>
+            <option value="desc" onClick={e => {handleOrderName(e)}}>Z - A</option>
         </select>
       </div>
     </div>
