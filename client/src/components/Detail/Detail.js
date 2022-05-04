@@ -28,7 +28,7 @@ const Detail = (props) => {
                     <div className={styles.card}>
                         <h2 className={styles.h2}>{myPokemon[0].name.charAt(0).toUpperCase() + myPokemon[0].name.slice(1)}</h2>
                         <p className={styles.p}>#{myPokemon[0].id}</p>
-                        <img src={myPokemon[0].img ? myPokemon[0].img : noImage} alt="img not found" alt="250px" width="200px" />
+                        <img src={myPokemon[0].img ? myPokemon[0].img : noImage} alt="img not found" height="250px" width="200px" />
                         <div className={styles.types}>
                             <h3>{myPokemon[0].types?.map((e, k) => {
                                     return (
