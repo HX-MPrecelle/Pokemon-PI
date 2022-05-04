@@ -80,7 +80,7 @@ const PokemonCreate = () => {
             })
             e.target.value = 'Select type';
         } else {
-            alert('No se pueden elegir mas de dos tipos de pokemon')
+            alert('Two types of pokemon at most')
         }
     }
 
